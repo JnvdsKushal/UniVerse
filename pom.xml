@@ -15,6 +15,7 @@
     <groupId>com.universe</groupId>
     <artifactId>universe-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>universe-backend</name>
     <description>UniVerse Backend</description>
 
@@ -29,6 +30,7 @@
     <dependencies>
 
         <!-- Spring Boot -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -59,7 +61,8 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Database -->
+        <!-- PostgreSQL -->
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -67,20 +70,21 @@
         </dependency>
 
         <!-- Flyway -->
+
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
         </dependency>
-        
-        <!-- Flyway database support for PostgreSQL -->
+
         <dependency>
-    		<groupId>org.flywaydb</groupId>
-    		<artifactId>flyway-database-postgresql</artifactId>
-    		<version>${flyway.version}</version>
-		</dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
 
         <!-- JWT -->
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -102,6 +106,7 @@
         </dependency>
 
         <!-- Swagger -->
+
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -109,13 +114,23 @@
         </dependency>
 
         <!-- MapStruct -->
+
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
 
+        <!-- Cloudinary -->
+
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.39.0</version>
+        </dependency>
+
         <!-- Lombok -->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -123,6 +138,7 @@
         </dependency>
 
         <!-- DevTools -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -131,6 +147,7 @@
         </dependency>
 
         <!-- Testing -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -142,28 +159,11 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        
-        <dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-api</artifactId>
-		    <version>0.12.6</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-impl</artifactId>
-		    <version>0.12.6</version>
-		    <scope>runtime</scope>
-		</dependency>
-		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-jackson</artifactId>
-		    <version>0.12.6</version>
-		    <scope>runtime</scope>
-		</dependency>
 
     </dependencies>
 
     <build>
+
         <plugins>
 
             <plugin>
@@ -174,9 +174,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
 
                     <annotationProcessorPaths>
 
@@ -195,9 +197,11 @@
                     </annotationProcessorPaths>
 
                 </configuration>
+
             </plugin>
 
         </plugins>
+
     </build>
 
 </project>

@@ -23,6 +23,12 @@ public class User {
 
     @Column(nullable = false, unique = true, length = 255)
     private String email;
+    
+    @Column(name = "avatar_url", length = 500)
+    private String avatarUrl;
+
+    @Column(name = "trust_score", nullable = false)
+    private int trustScore;
 
     @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;

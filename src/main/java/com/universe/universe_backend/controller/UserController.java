@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/users")
@@ -26,5 +28,12 @@ public class UserController {
             @AuthenticationPrincipal String email,
             @Valid @RequestBody UpdateProfileRequest request) {
         return ResponseEntity.ok(userService.updateProfile(email, request));
+    }
+    
+    @PostMapping("/me/avatar")
+    public ResponseEntity<UserProfileResponse> uploadAvatar(
+            @AuthenticationPrincipal String email,
+            @RequestParam("file") MultipartFile file) throws IOException {
+        return ResponseEntity.ok(userService.uploadAvatar(email, file));
     }
 }

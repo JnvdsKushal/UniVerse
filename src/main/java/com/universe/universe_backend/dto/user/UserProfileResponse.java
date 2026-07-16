@@ -13,4 +13,7 @@ public class UserProfileResponse {
     private String universityName;
     private boolean verified;
     private String role;
+    
+    private String avatarUrl;
+    private int trustScore;
 }
