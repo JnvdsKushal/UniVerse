@@ -11,19 +11,22 @@ import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<Product, UUID> {
 
-    @Query("""
-        SELECT p FROM Product p
-        WHERE p.status = 'ACTIVE'
-        AND (:categoryId IS NULL OR p.category.id = :categoryId)
-        AND (:minPrice IS NULL OR p.price >= :minPrice)
-        AND (:maxPrice IS NULL OR p.price <= :maxPrice)
-        AND (:keyword IS NULL OR LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')))
-    """)
-    Page<Product> search(
-            @Param("categoryId") UUID categoryId,
-            @Param("minPrice") BigDecimal minPrice,
-            @Param("maxPrice") BigDecimal maxPrice,
-            @Param("keyword") String keyword,
-            Pageable pageable
-    );
+	@Query("""
+			SELECT p FROM Product p
+			WHERE p.status = 'ACTIVE'
+			AND (:categoryId IS NULL OR p.category.id = :categoryId)
+			AND (:minPrice IS NULL OR p.price >= :minPrice)
+			AND (:maxPrice IS NULL OR p.price <= :maxPrice)
+			AND (
+			    COALESCE(:keyword, '') = ''
+			    OR LOWER(p.title) LIKE LOWER(CONCAT('%', CAST(:keyword AS string), '%'))
+			)
+			""")
+			Page<Product> search(
+			        @Param("categoryId") UUID categoryId,
+			        @Param("minPrice") BigDecimal minPrice,
+			        @Param("maxPrice") BigDecimal maxPrice,
+			        @Param("keyword") String keyword,
+			        Pageable pageable
+			);
 }
