@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.universe.universe_backend.dto.ai.AiSearchResponse;
+import com.universe.universe_backend.dto.ai.AiSearchRequest;
+import com.universe.universe_backend.service.AiSearchService;
 
 @RestController
 @RequestMapping("/api/ai")
@@ -18,5 +21,12 @@ public class AiController {
     @PostMapping("/generate-listing")
     public ResponseEntity<GenerateListingResponse> generateListing(@Valid @RequestBody GenerateListingRequest req) {
         return ResponseEntity.ok(aiListingService.generate(req));
+    }
+    
+    private final AiSearchService aiSearchService;
+    
+    @PostMapping("/search-products")
+    public ResponseEntity<AiSearchResponse> aiSearch(@Valid @RequestBody AiSearchRequest req) {
+        return ResponseEntity.ok(aiSearchService.search(req));
     }
 }
